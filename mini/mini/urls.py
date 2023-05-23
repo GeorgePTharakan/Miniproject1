@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from miniapp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   # path('admin/', admin.site.urls),
+    path('', views.landing_page_view, name='landingpage'),
+    path('signin/', views.sign_in_view, name='signin'),
+    
+    path('login/', views.login_view, name='login'),
 ]
+
+
+
