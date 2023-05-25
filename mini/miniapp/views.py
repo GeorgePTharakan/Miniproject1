@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .models import *
 
-def sign_in_view(request):
+def Signup(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -20,18 +20,18 @@ def sign_in_view(request):
         user_profile.save()
         
         # Redirect the user to the landing page or any other desired page
-        return redirect('landingpage')
+        return redirect('LandingBeforeLogin')
     
-    return render(request, 'signin.html')
+    return render(request, 'Signup.html')
 
 
 
 
 
 
-def landing_page_view(request):
+def LandingBeforeLogin(request):
     # Handle the landing page logic here
-    return render(request, 'landingpage.html')
+    return render(request, 'LandingBeforeLogin.html')
 '''
 def login_view(request):
     if request.method == 'POST':
@@ -53,7 +53,7 @@ def login_view(request):
 
 '''
 
-def login_view(request):
+def Login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -64,12 +64,32 @@ def login_view(request):
 
   
             if un == username and pd == password:
-                return redirect('landingpage')
+                return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
-        return render(request, 'login.html', {'error_message': error_message})   
-    return render(request, 'login.html')
-            
+        return render(request, 'Login.html', {'error_message': error_message})   
+    return render(request, 'Login.html')
+
+def LandingAfterLogin(request):
+    return render(request, 'LandingAfterLogin.html')
+
+def Profile(request):
+    return render(request, 'Profile.html')
+
+def About(request):
+    return render(request, 'About.html')
+
+def Courses(request):
+    return render(request, 'Courses.html')
+
+def Cppcourse(request):
+    return render(request, 'Cppcourse.html')
+
+def Javacourse(request):
+    return render(request, 'Javacourse.html')
+
+def Pythoncourse(request):
+    return render(request, 'Pythoncourse.html') 
                     
                 
 
