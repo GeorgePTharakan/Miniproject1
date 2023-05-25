@@ -21,15 +21,15 @@ from miniapp import views
 urlpatterns = [
    # path('admin/', admin.site.urls),
     path('', views.LandingBeforeLogin, name='LandingBeforeLogin'),
-    path('Signup/', views.Signup, name='Signup'),
+    path('Signup.html', views.Signup, name='Signup'),
     
-    path('Login/', views.Login, name='Login'),
-    path('Profile/',views.Profile, name='Profile'),
-    path('LandingAfterLogin/',views.LandingAfterLogin, name='LandingAfterLogin'),
-    path('About/',views.About, name='About'),
-    path('Courses/',views.Courses, name='Courses'),
-    path('Pythoncourse/',views.Pythoncourse, name='Pythoncourse'),
-    path('Javacourse/',views.Javacourse, name='Javacourse'),
-    path('Cppcourse/',views.Cppcourse, name='Cppcourse'),
+    path('Login.html', views.Login, name='Login'),
+    path('Profile.html',views.Profile, name='Profile'),
+    path('LandingAfterLogin.html',views.LandingAfterLogin, name='LandingAfterLogin'),
+    path('About.html',views.About, name='About'),
+    path('Courses.html',views.Courses, name='Courses'),
+    path('Pythoncourse.html',views.Pythoncourse, name='Pythoncourse'),
+    path('Javacourse.html',views.Javacourse, name='Javacourse'),
+    path('Cppcourse.html',views.Cppcourse, name='Cppcourse'),
 ]
 
