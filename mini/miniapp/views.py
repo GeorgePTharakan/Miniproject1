@@ -6,32 +6,39 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 
-def sign_in_view(request):
+@csrf_exempt
+
+def Signup(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        
+
+        username = request.POST.get('username')
+        email_id = request.POST['email']
+        password = request.POST.get('password')
         
         # Validate the credentials or perform any additional checks
         
         # Create a new user profile
         #user_profile = UserProfile.objects.create(username=username, password=password)
-        user_profile = UserProfile(username=username, password=password)
+        user_profile = UserProfile(username=username,email_id=email_id, password=password)
         user_profile.save()
         
         # Redirect the user to the landing page or any other desired page
-        return redirect('landingpage')
+       
+        return redirect('LandingAfterLogin')
     
-    return render(request, 'signin.html')
+    return render(request, 'Signup.html')
 
 
 
 
 
 
-def landing_page_view(request):
+def LandingBeforeLogin(request):
     # Handle the landing page logic here
-    return render(request, 'landingpage.html')
+    return render(request, 'LandingBeforeLogin.html')
 '''
 def login_view(request):
     if request.method == 'POST':
@@ -53,25 +60,72 @@ def login_view(request):
 
 '''
 
-def login_view(request):
+def Login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user_profiles = UserProfile.objects.all()
+        
+        
         for user_profile in user_profiles:
             un = user_profile.username
             pd = user_profile.password
 
   
             if un == username and pd == password:
-                return redirect('landingpage')
+                request.session['username'] = user_profile.username
+                request.session['email_id'] = user_profile.email_id 
+                request.session['phone_number'] = user_profile.phone_number
+                request.session['name'] = user_profile.name
+                return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
-        return render(request, 'login.html', {'error_message': error_message})   
-    return render(request, 'login.html')
-            
-                    
-                
+        return render(request, 'Login.html', {'error_message': error_message})   
+    return render(request, 'Login.html')
+
+def LandingAfterLogin(request):
+    return render(request, 'LandingAfterLogin.html')
+
+def Profile(request):
+    return render(request, 'Profile.html')
+
+def About(request):
+    return render(request, 'About.html')
+
+def Courses(request):
+    return render(request, 'Courses.html')
+
+def Cppcourse(request):
+    return render(request, 'Cppcourse.html')
+
+def Javacourse(request):
+    return render(request, 'Javacourse.html')
+
+def Pythoncourse(request):
+    return render(request, 'Pythoncourse.html') 
+'''def Profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    context = {'Profile': user_profile}
+    return render(request, 'Profile.html', context)
+'''
+def Profile(request):
+    # Retrieve user data from the session
+    phone_number = request.session.get('phone_number')
+    username = request.session.get('username')
+    email_id = request.session.get('email_id')
+    name = request.session.get('name')
+    # Retrieve any other user details stored in the session
+
+    # Use the data to render the profile page
+    context = {
+        'phone_number': phone_number,
+        'username': username,
+        'email_id': email_id,
+        # Add any other user details to the context
+    }
+    return render(request, 'Profile.html',context)
+
+
 
      
 

@@ -20,11 +20,17 @@ from miniapp import views
 
 urlpatterns = [
    # path('admin/', admin.site.urls),
-    path('', views.landing_page_view, name='landingpage'),
-    path('signin/', views.sign_in_view, name='signin'),
+    path('', views.LandingBeforeLogin, name='LandingBeforeLogin'),
+    path('Signup.html', views.Signup, name='Signup'),
     
-    path('login/', views.login_view, name='login'),
+    path('Login.html', views.Login, name='Login'),
+    path('Profile.html',views.Profile, name='Profile'),
+    path('LandingAfterLogin.html',views.LandingAfterLogin, name='LandingAfterLogin'),
+    path('About.html',views.About, name='About'),
+    path('Courses.html',views.Courses, name='Courses'),
+    path('Pythoncourse.html',views.Pythoncourse, name='Pythoncourse'),
+    path('Javacourse.html',views.Javacourse, name='Javacourse'),
+    path('Cppcourse.html',views.Cppcourse, name='Cppcourse'),
+    path('Profile.html',views.Profile, name='Profile'),
 ]
-
-
 
