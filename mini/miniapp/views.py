@@ -14,9 +14,9 @@ from django.contrib import messages
 def Signup(request):
     if request.method == 'POST':
         
-
+        
         username = request.POST.get('username')
-        email_id = request.POST['email']
+        email_id = request.POST['email_id']
         password = request.POST.get('password')
         
         # Validate the credentials or perform any additional checks
@@ -27,7 +27,8 @@ def Signup(request):
         user_profile.save()
         
         # Redirect the user to the landing page or any other desired page
-       
+        
+        return render(request,'LandingAfterLogin.html')
         return redirect('LandingAfterLogin')
     
     return render(request, 'Signup.html')
@@ -66,14 +67,17 @@ def Login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user_profiles = UserProfile.objects.all()
-        
+        print(username)
+        print(password)
         
         for user_profile in user_profiles:
             un = user_profile.username
             pd = user_profile.password
-
+            print(un)
+            print(pd)
   
             if un == username and pd == password:
+                
                 request.session['username'] = user_profile.username
                 request.session['email_id'] = user_profile.email_id 
                 request.session['phone_number'] = user_profile.phone_number
@@ -81,7 +85,11 @@ def Login(request):
                 return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
+<<<<<<< HEAD
         messages.error(request, 'Invalid username or password.')
+=======
+        print("hellooo")
+>>>>>>> 2162b74251811010ffd038e1a9e0d90f62a176c6
         return render(request, 'Login.html', {'error_message': error_message})   
     return render(request, 'Login.html')
 
