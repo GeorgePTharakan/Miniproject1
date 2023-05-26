@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 @csrf_exempt
 
@@ -80,6 +81,7 @@ def Login(request):
                 return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
+        messages.error(request, 'Invalid username or password.')
         return render(request, 'Login.html', {'error_message': error_message})   
     return render(request, 'Login.html')
 
@@ -124,6 +126,8 @@ def Profile(request):
         # Add any other user details to the context
     }
     return render(request, 'Profile.html',context)
+def Logout(request):
+    return render(request, 'LandingBeforeLogin.html')
 
 
 
