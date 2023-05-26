@@ -31,5 +31,6 @@ urlpatterns = [
     path('Pythoncourse.html',views.Pythoncourse, name='Pythoncourse'),
     path('Javacourse.html',views.Javacourse, name='Javacourse'),
     path('Cppcourse.html',views.Cppcourse, name='Cppcourse'),
+    path('Profile.html',views.Profile, name='Profile'),
 ]
 

@@ -65,12 +65,17 @@ def Login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user_profiles = UserProfile.objects.all()
+        
+        
         for user_profile in user_profiles:
             un = user_profile.username
             pd = user_profile.password
 
   
             if un == username and pd == password:
+                request.session['username'] = user_profile.username
+                request.session['email_id'] = user_profile.email_id 
+                request.session['phone_number'] = user_profile.phone_number
                 return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
@@ -97,8 +102,26 @@ def Javacourse(request):
 
 def Pythoncourse(request):
     return render(request, 'Pythoncourse.html') 
-                    
-                
+'''def Profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    context = {'Profile': user_profile}
+    return render(request, 'Profile.html', context)
+'''
+def Profile(request):
+    # Retrieve user data from the session
+    phone_number = request.session.get('phone_number')
+    username = request.session.get('username')
+    email_id = request.session.get('email_id')
+    # Retrieve any other user details stored in the session
+
+    # Use the data to render the profile page
+    context = {
+        'phone_number': phone_number,
+        'username': username,
+        'email_id': email_id,
+        # Add any other user details to the context
+    }
+    return render(request, 'Profile.html',context)
 
      
 
