@@ -24,11 +24,11 @@
         <img src="{% static 'images/Logo.png' %}" style="width: 3vw; min-width: 3px;"/>
         <div class="navigation">
         <ul>
-        <li><a  href="#">Home</a></li>
-        <li><a  href="About.html">About</a></li>
+        <li><a  href="{% url 'landingafterlogin' %}">Home</a></li>
+        <li><a  href="{% url 'about' %}">About</a></li>
         <li><a class="active" href="Courses.html">Courses</a></li>
-        <li><a href="Profile.html">Profile</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
         </div>
         </nav>
@@ -79,7 +79,7 @@
                                        </div>
                                </div>
  
-                               <div class="courses">
+                               <div onclick="window.location.href= 'http://127.0.0.1:8000/bs/cppcourse/';" class="courses">
                                  <img src="{% static 'images/c5.jpg' %}" >
                                       <div class="details">
                                          <span>Updated 4/6/23</span>
@@ -97,7 +97,7 @@
  
  
                          </div>
-                 </section> I
+                 </section> 
       
                
         

@@ -9,7 +9,22 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/Profile.css' %}">
 </head>
+
 <body>
+    <nav>
+           
+        <img src="{% static 'images/Logo.png' %}" style="width: 3vw; min-width: 3px;"/>
+        <div class="navigation">
+        <ul>
+        <li><a class="active" href="{% url 'landingafterlogin' %}">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Courses.html">Courses</a></li>
+        <li><a href="Profile.html">Profile</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        </div>
+    </nav>
+
   <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
@@ -38,7 +53,7 @@
                     <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
                     <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+               <!--- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>-->
             </div>
         </div>
       <!--  <div class="col-md-4">
