@@ -76,6 +76,7 @@ def Login(request):
                 request.session['username'] = user_profile.username
                 request.session['email_id'] = user_profile.email_id 
                 request.session['phone_number'] = user_profile.phone_number
+                request.session['name'] = user_profile.name
                 return redirect('LandingAfterLogin')
         
         error_message = 'Invalid username or password.'
@@ -112,6 +113,7 @@ def Profile(request):
     phone_number = request.session.get('phone_number')
     username = request.session.get('username')
     email_id = request.session.get('email_id')
+    name = request.session.get('name')
     # Retrieve any other user details stored in the session
 
     # Use the data to render the profile page
@@ -122,6 +124,8 @@ def Profile(request):
         # Add any other user details to the context
     }
     return render(request, 'Profile.html',context)
+
+
 
      
 
