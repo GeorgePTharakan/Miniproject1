@@ -32,5 +32,6 @@ urlpatterns = [
     path('Javacourse.html',views.Javacourse, name='Javacourse'),
     path('Cppcourse.html',views.Cppcourse, name='Cppcourse'),
     path('Profile.html',views.Profile, name='Profile'),
+    path('Contact.html',views.Contact, name='Contact'),
 ]
 

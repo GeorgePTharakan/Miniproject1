@@ -67,16 +67,15 @@ def Login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user_profiles = UserProfile.objects.all()
-        print(username)
-        print(password)
+        
         
         for user_profile in user_profiles:
             un = user_profile.username
             pd = user_profile.password
-            print(un)
+            
             print(pd)
-  
             if un == username and pd == password:
+                
                 
                 request.session['username'] = user_profile.username
                 request.session['email_id'] = user_profile.email_id 
@@ -84,13 +83,9 @@ def Login(request):
                 request.session['name'] = user_profile.name
                 return redirect('LandingAfterLogin')
         
-        error_message = 'Invalid username or password.'
-<<<<<<< HEAD
+        #error_message = 'Invalid username or password.'
         messages.error(request, 'Invalid username or password.')
-=======
-        print("hellooo")
->>>>>>> 2162b74251811010ffd038e1a9e0d90f62a176c6
-        return render(request, 'Login.html', {'error_message': error_message})   
+        return render(request, 'Login.html')   
     return render(request, 'Login.html')
 
 def LandingAfterLogin(request):
@@ -136,6 +131,9 @@ def Profile(request):
     return render(request, 'Profile.html',context)
 def Logout(request):
     return render(request, 'LandingBeforeLogin.html')
+
+def Contact(request):
+    return render(request, 'Contact.html')
 
 
 
